@@ -297,11 +297,20 @@
   });
 
   // Open the QR code text as a URL
-  openBtn.addEventListener('click', () => {
-    if (qrCodeText) {
-      window.open(qrCodeText, "_blank");
+openBtn.addEventListener('click', () => {
+  if (qrCodeText) {
+    // Check if qrCodeText is a valid URL
+    try {
+      const url = new URL(qrCodeText);
+      // If it's a valid URL, open it in a new tab
+      window.open(url, "_blank");
+    } catch (e) {
+      // If it's not a valid URL, open the ACLEDA Gateway
+      window.location.href = "https://acleda.gateway.mastercard.com";
     }
-  });
+  }
+});
+
 
 
   // Open the QR code text as a URL with Ctrl + O
